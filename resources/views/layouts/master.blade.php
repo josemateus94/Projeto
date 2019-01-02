@@ -12,15 +12,12 @@
         }
         .descricao{
             padding: 20px;
-        }
-        .nav-link{
-            color: #fff;
-        }
+        } 
     </style>
     <title>Cadastrode Produtos</title>
 </head>
-<body>
-    @component('layout.menu')
+<body>    
+    @component('layouts.menu',['current' => $current])
     @endcomponent
     <div class="container" id="container">        
         <main role="main">

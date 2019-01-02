@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.master')
 
 @section('body')
     <div class="jumbotron border border-secondary">
