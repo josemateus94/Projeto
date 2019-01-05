@@ -24,3 +24,7 @@ Route::post('/categorias/store', ['as' => 'adminCategoriasStore', 'uses' => 'Cat
 Route::get('/categorias/destroy/{id}', ['as' => 'adminCategoriasDestroy', 'uses' => 'CategoriaController@destroy']);
 Route::get('/categorias/edit/{id}', ['as' => 'adminCategoriasEdit', 'uses' => 'CategoriaController@edit']);
 Route::get('/categorias/update/{id}', ['as' => 'adminCategoriasUpdate', 'uses' => 'CategoriaController@update']); 
+
+Route::get('/', ['as' => 'adminUsuario', 'uses' => 'UsuarioController@index']);
+Route::get('/usuarios/create', ['as' => 'adminCreate', 'uses' => 'UsuarioController@create']);
+Route::post('/usuarios/store', ['as' => 'adminStore', 'uses' => 'UsuarioController@store']);

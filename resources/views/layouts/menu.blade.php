@@ -5,10 +5,10 @@
     </button>-->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item <?= ($current == "home")? 'active': ''; ?>">
+            <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item dropdown <?= ($current == "produtos")? 'active': ''; ?>">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Produtos
                 </a>
@@ -17,13 +17,22 @@
                     <a class="dropdown-item" href="{{ URL::Route('adminProdutosCreate') }}">Adicionar Produto</a>
                 </div>
             </li>
-            <li class="nav-item dropdown <?= ($current == "categorias")? 'active': ''; ?>">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categorias
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="/categorias">Lista Categorias</a>
                     <a class="dropdown-item" href="{{ URL::Route('adminCategoriasCreate') }}">Adicionar Categoria</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Usuario
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/">Lista Usuario</a>
+                    <a class="dropdown-item" href="{{ URL::Route('adminCreate') }}">Adicionar Usuario</a>
                 </div>
             </li>
         </ul>

@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">        
-    <meta name='csrf-token' contennt="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <meta name='csrf-token' content='{{ csrf_token() }}'>
     <style>
-        #container{
+        .container{
             padding-top: 10px;
         }
-        .descricao{
+	.descricao{
             padding: 20px;
         } 
     </style>
-    <title>Cadastrode Produtos</title>
 </head>
-<body>    
-    @component('layouts.menu',['current' => $current])
+<body>
+
+    @component('layouts.menu')
     @endcomponent
-    <div class="container" id="container">        
+    <div class="container" id="container"> 
         <main role="main">
             @yield('body')
         </main>
-    </div>
-    <script src="{{ asset('js/app.js') }}" type='text/javascript'></script>
+    </div>    
 </body>
+<script src="{{ asset('js/app.js') }}" type='text/javascript'></script>
 </html>
