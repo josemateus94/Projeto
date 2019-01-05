@@ -33,18 +33,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="idade">Idade:</label>
-                                <input type="number" name="idade" id="idade" class="form-control" placeholder="Informe a idade" value="{{ old('idade') }}">
-                                <div class="invalid-feedback">sssss</div>
+                                <input type="number" name="idade" id="idade" class="form-control {{ $errors->has('idade')? 'is-invalid':'' }}" placeholder="Informe a idade" value="{{ old('idade') }}">
+                                @if ($errors->has('idade'))
+                                    <div class="invalid-feedback">{{ $errors->first('idade') }}</div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="endereco">Endereco:</label>
-                                <input type="text" name="endereco" id="endereco" class="form-control" placeholder="Informe a endereco" value='{{ old('endereco') }}'>
-                                <div class="invalid-feedback">aaaa</div>
+                                <input type="text" name="endereco" id="endereco" class="form-control {{ $errors->has('endereco')? 'is-invalid':'' }}" placeholder="Informe a endereco" value='{{ old('endereco') }}'>
+                                @if ($errors->has('endereco'))
+                                    <div class="invalid-feedback">{{ $errors->first('endereco') }}</div>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail:</label>
-                                <input type="email" name="email" id="email" class="form-control" placeholder="Informe a e-mail" value='{{ old('email') }}'>
-                                <div class="invalid-feedback">erro</div>
+                                <input type="email" name="email" id="email" class="form-control {{ $errors->has('email')? 'is-invalid':'' }}" placeholder="Informe a e-mail" value='{{ old('email') }}'>
+                                @if ($errors->has('email'))
+                                    <div class="invalid-feedback">{{ $errors->first('email') }}</div>
+                                @endif
                             </div>                                                                                                        
                             <button type="submit" class='btn btn-primary btn-sm'>Salvar</button>
                             <a class='btn btn-danger btn-sm' href='{{ URL::Route('adminUsuario') }}'>Cancelar</a>

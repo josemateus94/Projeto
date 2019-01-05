@@ -24,11 +24,13 @@ class CategoriaController extends Controller
         ]);
     }
 
-    public function store(Request $request){
-        
-        /*$categoria = new Categoria;
-        $categoria->name = $request->input('nomeCategoria');
-        $categoria->save();*/
+    public function store(Request $request){        
+        $request->validate(array(
+            'name' => 'required'
+        ), 
+        array(
+            'required'  => 'O atribudo :attribute é requerido.'
+        ));
         Categoria::create($request->all());        
         return view('categorias.create',[
             "current" => "categorias"

@@ -41,21 +41,15 @@ class UsuarioController extends Controller
     public function store(Request $request){
         
         $request->validate(array(
-            'nome'  => 'required',
-            'idade' => 'required|Integer|min:0|max:100',
-            'email' => 'required|unique:usuarios|email'
+            'nome'      => 'required',
+            'idade'     => 'required|Integer|min:0|max:100',
+            'endereco'  => 'required|Integer|min:0|max:100',
+            'email'     => 'required|unique:usuarios|email'
         ),
         array(
-            'required' => 'O atribudo :attribute é requerido'
+            'required'  => 'O atribudo :attribute é requerido.'
         ));        
         Usuario::create($request->all());
-        /*$usuario  = new Usuario();
-        $usuario->nome = $request->input('nome');
-        $usuario->idade = $request->input('idade');
-        $usuario->endereco = $request->input('endereco');
-        $usuario->email = $request->input('email');
-        $usuario->save();*/
-        //return view('usuarios.create');
         return redirect()->action("UsuarioController@create");
 
     }

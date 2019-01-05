@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name='csrf-token' content='{{ csrf_token() }}'>
+    <title>Projeto</title>
     <style>
         .container{
             padding-top: 10px;
@@ -19,11 +20,23 @@
 
     @component('layouts.menu')
     @endcomponent
-    <div class="container" id="container"> 
+    <div class="container"> 
         <main role="main">
             @yield('body')
         </main>
     </div>    
 </body>
 <script src="{{ asset('js/app.js') }}" type='text/javascript'></script>
+<script>
+    $(document).ready(function(){    
+        $("#email").focusout(function(){
+            let email = $(this);
+            if (email.val().length) {
+                console.log('maior que zero');            
+            } else {
+                email.addClass('is-invalid');                        
+            }        
+        });
+    });
+</script>
 </html>

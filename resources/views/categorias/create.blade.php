@@ -1,21 +1,37 @@
 @extends('layouts.master')
-<style></style>
+
 @section('body')
-    <div class='card border'>        
-        <div class='card-body'>
-            <div style="text-align: right" >
-                <a class='btn btn-flat btn-sm btn-info' href="{{ URL::Route('adminCategorias') }}">Lista Categorias</a>
-            </div>            
-            <form action="<?= (isset($categoria))? URL::Route('adminCategoriasUpdate', $categoria->id): URL::Route('adminCategoriasStore') ?>" method="<?= (isset($categoria))? 'GET':'POST';?>">
-                @csrf
-                <div class="form-group">
-                    <label for="nomeCategoria">Nome: </label>
-                    <input type="text" name="name" id="nomeCategoria" class="form-control" placeholder="Nome da Categoria" aria-describedby="helpId"
-                    value="<?= (isset($categoria))? $categoria->name: "" ?>">
-                </div>    
-                <button type="submit" class="btn btn-primary btn-sn">Salvar</button>
-                <button type="cancel" class="btn btn-danger btn-sn">Cancelar</button>            
-            </form>
+    <main role='main'>
+        <div class='row'>
+            <div class="container col-sm-8 offset-md-2">
+                <div class="card border">
+                    <div class='card-header'>
+                        <div class='card-title' style='text-align: center'>
+                            <?= (isset($categoria))? "Editar Categoria": "Cadastar Categoria" ?>
+                        </div>
+                        @if ($errors->any())
+                            <div class='card-footer alert-danger'>
+                                @foreach ($errors->all() as $error)
+                                    {{ $error }}<br>                                    
+                                @endforeach
+                            </div>
+                        @endif
+
+                    </div>                
+                    <div class='card-body'>
+                        <form action="<?= (isset($categoria))? URL::Route('adminCategoriasUpdate', $categoria->id): URL::Route('adminCategoriasStore') ?>" method="<?= (isset($categoria))? 'GET':'POST';?>">
+                            @csrf
+                            <div class="form-group">
+                                <label for="nomeCategoria">Nome: </label>
+                                <input type="text" name="name" id="nomeCategoria" class="form-control" placeholder="Nome da Categoria" aria-describedby="helpId"
+                                value="<?= (isset($categoria))? $categoria->name:  old('name') ?>">
+                            </div>    
+                            <button type="submit" class="btn btn-primary btn-sn">Salvar</button>                
+                            <a class='btn btn-danger btn-sn' href="{{ URL::Route('adminCategorias') }}">Cancelar</a>                
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 @endsection
