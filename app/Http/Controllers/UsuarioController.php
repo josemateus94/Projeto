@@ -43,14 +43,17 @@ class UsuarioController extends Controller
         $request->validate(array(
             'nome'      => 'required',
             'idade'     => 'required|Integer|min:0|max:100',
-            'endereco'  => 'required|Integer|min:0|max:100',
+            'endereco'  => 'required',
             'email'     => 'required|unique:usuarios|email'
         ),
         array(
             'required'  => 'O atribudo :attribute é requerido.'
         ));        
         Usuario::create($request->all());
-        return redirect()->action("UsuarioController@create");
+        return view('usuarios.create',[
+            'success' => true
+        ]);
+        //return redirect()->action("UsuarioController@create");
 
     }
 

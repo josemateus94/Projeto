@@ -31,7 +31,7 @@
                     Usuario
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/">Lista Usuario</a>
+                    <a class="dropdown-item" href="/usuario/index">Lista Usuario</a>
                     <a class="dropdown-item" href="{{ URL::Route('adminCreate') }}">Adicionar Usuario</a>
                 </div>
             </li>

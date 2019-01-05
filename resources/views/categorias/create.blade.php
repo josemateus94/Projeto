@@ -10,13 +10,18 @@
                             <?= (isset($categoria))? "Editar Categoria": "Cadastar Categoria" ?>
                         </div>
                         @if ($errors->any())
-                            <div class='card-footer alert-danger'>
-                                @foreach ($errors->all() as $error)
-                                    {{ $error }}<br>                                    
-                                @endforeach
-                            </div>
-                        @endif
-
+                        <div class='card-footer alert-danger'>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br>                                    
+                            @endforeach
+                        </div>
+                        @else                            
+                            @if (isset($success))
+                                <div class='card-footer alert-success'>
+                                    Categoria cadastrado com sucesso.
+                                </div>
+                            @endif                            
+                        @endif                   
                     </div>                
                     <div class='card-body'>
                         <form action="<?= (isset($categoria))? URL::Route('adminCategoriasUpdate', $categoria->id): URL::Route('adminCategoriasStore') ?>" method="<?= (isset($categoria))? 'GET':'POST';?>">

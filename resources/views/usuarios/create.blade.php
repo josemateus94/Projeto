@@ -7,21 +7,26 @@
                 <div class="card border">
                     <div class='card-header'>
                         <div class='card-title' style='text-align: center'>
-                            Cadastro de Cliente
+                            Cadastro de Usuário
                         </div>
                         @if ($errors->any())
-                            <div class='card-footer alert-danger'>
-                                @foreach ($errors->all() as $error)
-                                    {{ $error }}<br>                                    
-                                @endforeach
-                            </div>
-                        @endif
-
+                        <div class='card-footer alert-danger'>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br>                                    
+                            @endforeach
+                        </div>
+                        @else                            
+                            @if (isset($success))
+                                <div class='card-footer alert-success'>
+                                    Usuário cadastrado com sucesso.
+                                </div>
+                            @endif                            
+                        @endif 
                     </div>                
                     <div class='card-body'>
                         <div style='text-align: right'>
                             <a class="btn btn-info btn-sm" href='{{ URL::Route('adminUsuario') }}'>Lista Usuarios</a>
-                        </div>
+                        </div>                    
                         <form action="{{ URL::Route('adminStore') }}" method="POST">
                             @csrf
                             <div class="form-group">

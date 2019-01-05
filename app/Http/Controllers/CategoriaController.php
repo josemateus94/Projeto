@@ -33,7 +33,7 @@ class CategoriaController extends Controller
         ));
         Categoria::create($request->all());        
         return view('categorias.create',[
-            "current" => "categorias"
+            "success" => true
         ]);
     }
 
