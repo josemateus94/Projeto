@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', ['as' => 'adminUsuario', 'uses' => 'UsuarioController@index']);
+Route::get('/usuarios/create', ['as' => 'adminCreate', 'uses' => 'UsuarioController@create']);
+Route::post('/usuarios/store', ['as' => 'adminStore', 'uses' => 'UsuarioController@store']);
