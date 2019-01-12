@@ -33,7 +33,7 @@ class CategoriaController extends Controller
         ));
         Categoria::create($request->all());        
         return view('categorias.create',[
-            "success" => true
+            "success" => 'Categoria cadastrada com sucesso.'
         ]);
     }
 
@@ -68,5 +68,11 @@ class CategoriaController extends Controller
         Categoria::destroy($id);
         $categorias = Categoria::all();   
         return redirect('/categorias');
+    }
+
+    public function indexJson(){
+        $categorias = Categoria::all();
+        //return json_encode($categorias);
+        return response()->json($categorias, 200);
     }
 }

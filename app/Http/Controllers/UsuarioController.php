@@ -51,7 +51,7 @@ class UsuarioController extends Controller
         ));        
         Usuario::create($request->all());
         return view('usuarios.create',[
-            'success' => true
+            'success' => 'Usuário cadastrado com sucesso.'
         ]);
         //return redirect()->action("UsuarioController@create");
 

@@ -8,15 +8,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Produtos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/produtos">Lista Produtos</a>
-                    <a class="dropdown-item" href="{{ URL::Route('adminProdutosCreate') }}">Adicionar Produto</a>
-                </div>
-            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="{{ URL::Route('adminProdutos') }}">Produtos</a>
+            </li>            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Categorias

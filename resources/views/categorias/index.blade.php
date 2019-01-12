@@ -26,14 +26,14 @@
                                         </button>
         
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <!-- EDITAR -->                                        
+                                            <!-- DELETAR -->                                        
                                             <li role="presentation">
-                                                <a class="dropdown-item" tabindex="-1" href="{{ URL::Route('adminCategoriasDestroy', $categoria->id) }}">Deletar</a>
+                                                <a class="dropdown-item" tabindex="-1" id="deletar" onclick="return confirm('Deseja mesmo deletar a categoria?');" href="{{ URL::Route('adminCategoriasDestroy', $categoria->id) }}">Deletar</a>
                                             </li>                                        
         
-                                            <!-- CONTA CORRENTE -->                                        
+                                            <!-- EDITAR -->                                        
                                             <li role="presentation">
-                                                <a class="dropdown-item" tabindex="-1" id="financial" href="{{ URL::Route('adminCategoriasEdit', $categoria->id) }}">Editar</a>
+                                                <a class="dropdown-item" tabindex="-1" id="editar" href="{{ URL::Route('adminCategoriasEdit', $categoria->id) }}">Editar</a>
                                             </li>                                        
                                         </ul>
                                     </div>

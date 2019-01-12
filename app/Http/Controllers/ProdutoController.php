@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Produto;
+use App\Categoria;
 
 class ProdutoController extends Controller
 {
@@ -11,11 +13,16 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('produtos.index',[
-            "current" => "produtos"
-        ]);
+    public function index(){
+        /*$produtos = Produto::find(1)->with('categoria')->get();
+        print_r($produtos[0]['categoria']);
+        print_r($produtos[0]);*/
+        return view('produtos.index');
+    }
+
+    public function indexJson(){
+        $produtos = Produto::all();
+        return response()->json($produtos, 200);
     }
 
     /**
