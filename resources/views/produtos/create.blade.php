@@ -28,15 +28,14 @@
                         value="<?= (isset($produtos))? $produtos->preco:  old('preco') ?>">
                     </div>
                     <div class="form-group">
-                        <label for="departamento">Departamento: </label>
-                        <select name="departamento" class="form-control" id="departamento">
-                            <option value=""></option>
+                        <label for="categoria_id">Categoria: </label>
+                        <select name="categoria_id" class="form-control" id="categoria_id">                            
                         </select>
                     </div> 
                 </div>            
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Salvar</button>
+                    <button type="button" id='salvar' class="btn btn-primary">Salvar</button>
                 </div>
             </form>
         </div>

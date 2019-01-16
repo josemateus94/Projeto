@@ -8,11 +8,7 @@ use App\Categoria;
 
 class ProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(){
         /*$produtos = Produto::find(1)->with('categoria')->get();
         print_r($produtos[0]['categoria']);
@@ -25,11 +21,7 @@ class ProdutoController extends Controller
         return response()->json($produtos, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(){
         
         return view('produtos.create',[
@@ -37,59 +29,35 @@ class ProdutoController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function store(Request $request){
+        
+        $produto = Produto::create($request->all());
+        return response()->json($produto, 200);                
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+
+    public function show($id){
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+    public function edit($id){
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+
+    public function update(Request $request, $id){
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+
+        $produto = Produto::find($id);
+        if(!is_null($produto)){
+            $produto = $produto->delete();
+            return response()->json('Produto deletado com sucesso', 200); 
+        }
+        return response()->json('Produto deletado com sucesso', 404);
     }
 }
