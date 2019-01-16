@@ -19,6 +19,7 @@ Route::group(['prefix' => 'produtos'], function () {
     Route::get('/', ['as' => 'adminProdutos', 'uses' => 'ProdutoController@index']);
     Route::get('/create', ['as' => 'adminProdutosCreate', 'uses' => 'ProdutoController@create']);
     Route::post('/store', ['as' => 'adminProdutosStore', 'uses' => 'ProdutoController@store']);
+    Route::post('/update', ['as' => 'adminProdutosUpdate', 'uses' => 'ProdutoController@update']);
 });
 
 Route::group(['prefix' => 'categorias'], function () {

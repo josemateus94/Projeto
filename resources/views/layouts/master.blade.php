@@ -28,15 +28,10 @@
 </body>
 <script src="{{ asset('js/app.js') }}" type='text/javascript'></script>
 <script>
-    $(document).ready(function(){    
-        $("#email").focusout(function(){
-            let email = $(this);
-            if (email.val().length) {
-                console.log('maior que zero');            
-            } else {
-                email.addClass('is-invalid');                        
-            }        
-        });
+    $(document).ready(function(){        
     });
 </script>
+    @hasSection ('javascript')
+        @yield('javascript')
+    @endif
 </html>
