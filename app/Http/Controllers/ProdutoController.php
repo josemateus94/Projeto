@@ -17,6 +17,7 @@ class ProdutoController extends Controller
     }
 
     public function indexJson(){
+        
         $produtos = Produto::all();
         return response()->json($produtos, 200);
     }
@@ -43,12 +44,21 @@ class ProdutoController extends Controller
 
 
     public function edit($id){
-        
+        $produto = Produto::find($id);
+        if ($produto) {
+            return response()->json($produto, 200);
+        }
+        return response()->json('Produto não encontrado', 404);
     }
 
 
-    public function update(Request $request, $id){
-        
+    public function update(Request $request){
+        $produto = Produto::find($request->id);
+        if ($produto) {
+            $produto->update($request->all());
+            return response()->json($produto, 200);
+        }
+        return response()->json('Erro ao editar produto', 404);
     }
 
     public function destroy($id){
@@ -58,6 +68,6 @@ class ProdutoController extends Controller
             $produto = $produto->delete();
             return response()->json('Produto deletado com sucesso', 200); 
         }
-        return response()->json('Produto deletado com sucesso', 404);
+        return response()->json('Erro ao deletar produto', 404);
     }
 }

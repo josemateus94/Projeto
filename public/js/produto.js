@@ -5,7 +5,7 @@ $.ajaxSetup({
 });
 
 /**
- * Carrega da tabela de produtos.
+ * Carrega a tabela de produtos.
  */
 $(function(){       
     let tr='';
@@ -37,7 +37,7 @@ function _carregaCategorias(){
     $.getJSON('/api/categorias/', function(datas){                
     }).done(function(datas){
         datas.forEach(data => {                    
-            opcao += "<option value="+data['id']+">"+data['name']+"</option>";              
+            opcao += "<option value="+data.id+">"+data.name+"</option>";              
         });                 
         $('#categoria_id').append(opcao);                
     }).fail(function() {
@@ -90,14 +90,37 @@ function deleteProduto(id){
         }
     })
 }
-function editarProduto(id){
-    console.log('editar => '+id);
-}
 
 /**
- * Cria elemneto produto e atualiza a lista.
+ * Edita o  produtos informado.
  */
-$('#salvar').click(function(){
+function editarProduto(id){        
+    $('#categoria_id').html('');
+    _carregaCategorias();    
+    $.get("/api/produtos/edit/"+id, function(data){
+
+    }).done(function(data){                
+        $('#id').val(data.id);
+        $('#nome').val(data.nome);
+        $('#preco').val(data.preco);
+        $('#quantidade').val(data.quantidade);
+        $('#categoria_id').val(data.categoria_id);
+        $('#modelProdutos').modal('show');        
+    });    
+}
+
+$('#salvar').click(function(){    
+    if (!$('#id').val()) {
+        _store();
+    }else{
+        _update();
+    }
+});
+
+/**
+ * Cria o elemneto produto e atualiza a lista.
+ */
+function _store(){
     prod = {
         nome:           $('#nome').val(),
         preco:          $('#preco').val(),
@@ -112,4 +135,33 @@ $('#salvar').click(function(){
     }).fail(function(){
         console.log('erro ao salvar o arquivo.');
     })
-});
+}
+
+/**
+ * Atualiza os itens dos produtos.
+ */
+function _update(){
+    prod = {
+        id:             $('#id').val(),
+        nome:           $('#nome').val(),
+        preco:          $('#preco').val(),
+        quantidade:     $('#quantidade').val(),
+        categoria_id:   $('#categoria_id').val()        
+    };
+    $.post('/api/produtos/update', prod, function (data) {
+    }).done(function(data){    
+        $('#modelProdutos').modal('hide');
+        linha = $("#tableProdutos>tbody>tr");
+        td = linha.filter(function (index, element){
+            return element.cells[0].textContent == data.id;
+        });
+        if (td) {
+            td[0].cells[1].textContent = data.nome;
+            td[0].cells[2].textContent = data.quantidade;
+            td[0].cells[3].textContent = data.preco;
+            td[0].cells[4].textContent = data.categoria_id;
+        }
+    }).fail(function(){
+        console.log('erro ao salvar o arquivo.');
+    });
+}
