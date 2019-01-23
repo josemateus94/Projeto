@@ -11,7 +11,7 @@
                     </button>
                 </div>
                 <div class="modal-body"> 
-                    <input type="hidden" name="id" value="<?= (isset($produtos))? $produtos->nome:  old('nome') ?>">              
+                    <input type="hidden" name="id" id="id" value="<?= (isset($produtos))? $produtos->id:  old('id') ?>">              
                     <div class="form-group">
                         <label for="nome">Nome: </label>
                         <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome da Produtos" aria-describedby="helpId"

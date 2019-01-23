@@ -12,10 +12,11 @@
                         @include('layouts.erros')                 
                     </div>                
                     <div class='card-body'>
-                        <form action="<?= (isset($categoria))? URL::Route('adminCategoriasUpdate', $categoria->id): URL::Route('adminCategoriasStore') ?>" method="<?= (isset($categoria))? 'GET':'POST';?>">
+                        <form action="<?= (isset($categoria))? URL::Route('adminCategoriasUpdate', $categoria->id): URL::Route('adminCategoriasStore') ?>" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="nomeCategoria">Nome: </label>
+                                <input type="hidden" class="form-control" name="id" id="id" value="{{ (isset($categoria))? $categoria->id:  old('id') }}">
                                 <input type="text" name="name" id="nomeCategoria" class="form-control" placeholder="Nome da Categoria" aria-describedby="helpId"
                                 value="<?= (isset($categoria))? $categoria->name:  old('name') ?>">
                             </div>    

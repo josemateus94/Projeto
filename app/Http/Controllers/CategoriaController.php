@@ -53,8 +53,8 @@ class CategoriaController extends Controller
         }        
     }
 
-    public function update(Request $request, $id){
-        $categoria = Categoria::find($id);
+    public function update(Request $request){
+        $categoria = Categoria::find($request->id);
         if ($categoria) {
             /*$categoria->name = $request->input('name');
             $categoria->save();*/
