@@ -1,8 +1,7 @@
-@include('layouts.erros')
-
-<div class="modal fade" id="modelProdutos" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="modelProdutos" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">    
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            @include('layouts.erros')                
             <form action="" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title">Cadastro de Produtos</h5>

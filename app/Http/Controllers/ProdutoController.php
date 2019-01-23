@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Produto;
 use App\Categoria;
+use Validator;
 
 class ProdutoController extends Controller
 {
@@ -44,7 +45,7 @@ class ProdutoController extends Controller
 
 
     public function edit($id){
-        $produto = Produto::find($id);
+        $produto = Produto::find($id);        
         if ($produto) {
             return response()->json($produto, 200);
         }
@@ -55,6 +56,19 @@ class ProdutoController extends Controller
     public function update(Request $request){
         $produto = Produto::find($request->id);
         if ($produto) {
+            
+            $validator = Validator::make($request->all()
+            ,array(
+                'nome'          => 'required',
+                'preco'         => 'required',
+                'quantidade'    => 'required',
+                'categoria_id'  => 'required'
+            ), array(
+                'required'  => 'O atribudo :attribute é requerido.'
+            ));
+            if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()->all()], 200);
+            }
             $produto->update($request->all());
             return response()->json($produto, 200);
         }

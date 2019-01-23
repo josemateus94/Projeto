@@ -84,6 +84,7 @@ function deleteProduto(id){
                 return element.cells[0].textContent == id;
             });
             td.remove();
+            _printSuccessMsg('deletado');
         },
         error: function(error){
             console.log(error);
@@ -132,6 +133,7 @@ function _store(){
         $('#modelProdutos').modal('hide');          
         tr = _loadTbody(data);                                
         $('#tableProdutos>tbody').append(tr);
+        _printSuccessMsg('criado');
     }).fail(function(){
         console.log('erro ao salvar o arquivo.');
     })
@@ -149,19 +151,47 @@ function _update(){
         categoria_id:   $('#categoria_id').val()        
     };
     $.post('/api/produtos/update', prod, function (data) {
-    }).done(function(data){    
-        $('#modelProdutos').modal('hide');
-        linha = $("#tableProdutos>tbody>tr");
-        td = linha.filter(function (index, element){
-            return element.cells[0].textContent == data.id;
-        });
-        if (td) {
-            td[0].cells[1].textContent = data.nome;
-            td[0].cells[2].textContent = data.quantidade;
-            td[0].cells[3].textContent = data.preco;
-            td[0].cells[4].textContent = data.categoria_id;
+    }).done(function(data){         
+        if($.isEmptyObject(data.error)){           
+            $('#modelProdutos').modal('hide');
+            linha = $("#tableProdutos>tbody>tr");
+            td = linha.filter(function (index, element){
+                return element.cells[0].textContent == data.id;
+            });
+            if (td) {
+                td[0].cells[1].textContent = data.nome;
+                td[0].cells[2].textContent = data.quantidade;
+                td[0].cells[3].textContent = data.preco;
+                td[0].cells[4].textContent = data.categoria_id;
+            }
+            _printSuccessMsg('editado');
+        }else{
+            _printErrorMsg(data.error);
         }
     }).fail(function(){
         console.log('erro ao salvar o arquivo.');
     });
+}
+
+/**
+ * Imprimi as mensagens de erros.
+ */
+function _printErrorMsg (msg) {    
+    $(".print-error-msg").find("ul").html('');
+    $(".print-error-msg").css('display','block');
+    $.each( msg, function( key, value ) {
+        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+    });
+}
+
+/**
+ * Imprimi as mensagens de sucessos.
+ */
+function _printSuccessMsg(msg){
+$('h5').append('<div class="alert alert-success" id="print-success-msg" style="display:block"><h6>Arquivo '+msg+' com sucesso!</h6></div>');                       
+    setTimeout(function() {
+        $('#print-success-msg').slideToggle(function(){ 
+            $('h5 #print-success-msg').remove();
+        });                
+    }, 2500); 
 }
